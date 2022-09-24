@@ -22,7 +22,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ["babel-loader"],
+        use: ["babel-loader", "eslint-loader"],
       },
       {
         test: /\.less$/,
@@ -35,4 +35,5 @@ module.exports = {
       template: path.resolve("./index.html"),
     }),
   ],
+  devtool: isProduction ? "source-map" : "inline-source-map",
 };
