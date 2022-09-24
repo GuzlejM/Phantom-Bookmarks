@@ -4,7 +4,10 @@
   "description": "React - URL Bookmarking System",
   "main": "index.jsx",
   "scripts": {
-    "start": "webpack serve --mode development --env=development"
+    "start": "webpack serve --mode development --env=development",
+    "lint": "eslint --fix --ext .js,.jsx .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production --env=production"
   },
   "repository": {
     "type": "git",
@@ -35,11 +38,11 @@
     "eslint": "^8.24.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-react": "^1.1.7",
-    "eslint-loader": "^4.0.2",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.31.8",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-webpack-plugin": "^3.2.0",
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.0",
     "webpack": "^5.74.0",
