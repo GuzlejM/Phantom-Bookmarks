@@ -15,7 +15,7 @@ module.exports = {
     extensions: [".js", ".jsx"],
   },
   devServer: {
-    contentBase: "./build",
+    static: "./",
   },
   module: {
     rules: [
