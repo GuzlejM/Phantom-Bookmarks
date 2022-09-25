@@ -1,11 +1,13 @@
-import { List } from '@mui/material';
 import React from 'react';
+import { List } from '@mui/material';
+import PropTypes from 'prop-types';
 import Bookmark from './Bookmark';
 
 function BookmarksList({ bookmarks, removeBookmark }) {
+  const reversedBookmarks = [...bookmarks].reverse();
   return (
     <List>
-      {bookmarks.map((bookmark) => (
+      {reversedBookmarks.map((bookmark) => (
         <Bookmark
           key={bookmark.id}
           bookmark={bookmark}
@@ -16,4 +18,8 @@ function BookmarksList({ bookmarks, removeBookmark }) {
   );
 }
 
+BookmarksList.propTypes = {
+  bookmarks: PropTypes.arrayOf(),
+  removeBookmark: PropTypes.func.isRequired,
+};
 export default BookmarksList;

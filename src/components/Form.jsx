@@ -17,11 +17,8 @@ function Form({ addBookmark }) {
 
   const handleSubmit = useCallback((e) => {
     e.preventDefault(); // prevents browser refresh
-    // trim() gets rid of string whitespace
-    addBookmark({ ...bookmark, id: uuid() });
-    setBookmark({ ...bookmark, url: e.target.value });
-    console.log('here', bookmark);
-    console.log('here 2', ...bookmark);
+    setBookmark({ id: '', url: '' });
+    addBookmark(bookmark);
   });
 
   return (
@@ -33,9 +30,13 @@ function Form({ addBookmark }) {
         value={bookmark.url}
         onChange={handleURLInputChange}
       />
-      <Button type="submit">Submit</Button>
+      <Button onClick={handleSubmit}>Submit</Button>
     </form>
   );
 }
+
+Form.propTypes = {
+  addBookmark: PropTypes.func.isRequired,
+};
 
 export default Form;
