@@ -10,11 +10,12 @@ function Form({ addBookmark }) {
     url: '',
   });
   const [isValid, setIsValid] = useState(false);
+  const [error, setError] = useState(false);
   const [label, setLabel] = useState('Url');
 
   const validateUrl = (url) => {
     const regex =
-      /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/;
+      /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=+$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=+$,\w]+@)[A-Za-z0-9.-]+)((?:\/[+~%/.\w-_]*)?\??(?:[-+=&;%@.\w_]*)#?(?:[\w]*))?)/;
     return regex.test(url);
   };
 
@@ -56,9 +57,11 @@ function Form({ addBookmark }) {
     if (isValid) {
       setLabel('Url');
       setIsValid(true);
+      setError(false);
     } else {
       setLabel('Error');
       setIsValid(false);
+      setError(true);
     }
   });
 
@@ -66,6 +69,7 @@ function Form({ addBookmark }) {
     <form className="form" onSubmit={handleSubmit}>
       <TextField
         // eslint-disable-next-line react/jsx-props-no-spreading
+        error={error}
         label={label}
         type="text"
         name="url"

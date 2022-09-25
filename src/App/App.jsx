@@ -16,7 +16,6 @@ function App() {
     );
     if (storageBookmarks) {
       setBookmarks(storageBookmarks);
-      console.log(bookmarks, storageBookmarks);
     }
   }, []);
 

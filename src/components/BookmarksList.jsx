@@ -19,7 +19,12 @@ function BookmarksList({ bookmarks, removeBookmark }) {
 }
 
 BookmarksList.propTypes = {
-  bookmarks: PropTypes.arrayOf(),
+  bookmarks: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      url: PropTypes.string,
+    }),
+  ),
   removeBookmark: PropTypes.func.isRequired,
 };
 export default BookmarksList;
