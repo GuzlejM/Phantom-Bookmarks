@@ -17,6 +17,7 @@ function Bookmark({ bookmark, removeBookmark }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setText(text);
     setIsEditing(false);
   };
 
@@ -43,7 +44,7 @@ function Bookmark({ bookmark, removeBookmark }) {
           </form>
         ) : (
           <div className="notEditingState">
-            <p>{bookmark.url}</p>
+            <p>{text}</p>
             <IconButton onClick={handleEditClick}>
               <EditIcon />
             </IconButton>
