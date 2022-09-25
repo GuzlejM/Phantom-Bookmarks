@@ -1,24 +1,55 @@
-import React, { useCallback } from 'react';
-import { IconButton, ListItem } from '@mui/material';
+import React, { useState, useCallback } from 'react';
+import { IconButton, ListItem, TextField } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 import PropTypes from 'prop-types';
+import './Bookmark.css';
 
 function Bookmark({ bookmark, removeBookmark }) {
+  const [text, setText] = useState(bookmark.url);
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleURLInputChange = useCallback((e) => {
+    // e.target.value contains new input from onChange
+    // event for input elements
+    setText(e.target.value);
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsEditing(false);
+  };
+
   const handleRemoveClick = useCallback(() => {
     removeBookmark(bookmark.id);
   });
 
   const handleEditClick = useCallback(() => {
-    removeBookmark(bookmark.id);
+    setIsEditing(!isEditing);
   });
-  
 
   return (
     <ListItem>
-      {bookmark.url}
-      <IconButton onClick={handleEditClick}>
-        <DeleteIcon />
-      </IconButton>
+      <div>
+        {isEditing ? (
+          <form onSubmit={handleSubmit}>
+            <TextField
+              label="Text"
+              type="text"
+              name="text"
+              value={text}
+              onChange={handleURLInputChange}
+            />
+          </form>
+        ) : (
+          <div className="notEditingState">
+            <p>{bookmark.url}</p>
+            <IconButton onClick={handleEditClick}>
+              <EditIcon />
+            </IconButton>
+          </div>
+        )}
+      </div>
       <IconButton onClick={handleRemoveClick}>
         <DeleteIcon />
       </IconButton>
