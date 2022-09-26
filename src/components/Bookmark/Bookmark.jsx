@@ -74,7 +74,6 @@ function Bookmark({ bookmark, removeBookmark }) {
   //Handles Focused input State
   const handleFocused = (e) => {
     setIsEditing(!isEditing);
-    console.log('Focused', isEditing);
   };
   // Handles removing bookmark from list by id
   const handleRemoveClick = useCallback(() => {
