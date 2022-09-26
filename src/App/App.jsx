@@ -49,9 +49,9 @@ function App() {
   return (
     <div className="App">
       <Typography style={{ padding: 16 }} variant="h1">
-        Phantom - URL Bookmarks System
+        URL Bookmarks System - Phantom
       </Typography>
-      <div className='top-pagination'>
+      <div className="top-pagination">
         <Pagination
           totalBookmarks={bookmarks.length}
           bookmarksPerPage={bookmarksPerPage}
