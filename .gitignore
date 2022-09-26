@@ -1,6 +1,6 @@
 node_modules
-.bablerc
-.prettierrc
-.webpack.config.js
-.eslintrc.json
+bablerc
+prettierrc
+webpack.config.js
+eslintrc.json
 build

@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 module.exports = (env) => {
   const isProduction = env === 'production';
@@ -40,6 +41,9 @@ module.exports = (env) => {
     plugins: [
       new HtmlWebpackPlugin({
         template: path.resolve('./index.html'),
+      }),
+      new FaviconsWebpackPlugin({
+        logo: path.resolve('./assets/favicon-32x32.png'),
       }),
     ],
     devtool: isProduction ? 'source-map' : 'inline-source-map',
