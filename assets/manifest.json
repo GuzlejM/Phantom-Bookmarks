@@ -1,0 +1,17 @@
+{
+  "name": "react-bookmarks",
+  "short_name": "react-bookmarks",
+  "description": "React - URL Bookmarking System",
+  "dir": "auto",
+  "lang": "en-US",
+  "display": "standalone",
+  "orientation": "any",
+  "start_url": "/?homescreen=1",
+  "background_color": "#fff",
+  "theme_color": "#fff",
+  "icons": {
+    "src": "favicon-32x32.png",
+    "sizes": "36x36",
+    "type": "image/png"
+  }
+}
