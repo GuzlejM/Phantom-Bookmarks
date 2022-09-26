@@ -1,26 +1,22 @@
 /* eslint-disable no-shadow */
-/* eslint-disable operator-linebreak */
 /* eslint-disable no-unused-vars */
 import React, { useState, useCallback, useEffect } from 'react';
+import OutsideClickHandler from './OutsideClickHandler';
+import PropTypes from 'prop-types';
+
 import { IconButton, ListItem, TextField, Link, Tooltip } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import PropTypes from 'prop-types';
+
 import './Bookmark.css';
 
 function Bookmark({ bookmark, removeBookmark }) {
-  const [text, setText] = useState(bookmark.url);
-  const [isEditing, setIsEditing] = useState(false);
-  const [isValid, setIsValid] = useState(false);
   const [error, setError] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isValid, setIsValid] = useState(false);
   const [label, setLabel] = useState('Url');
-
-  // Url Validator
-  const validateUrl = (url) => {
-    const regex =
-      /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=+$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=+$,\w]+@)[A-Za-z0-9.-]+)((?:\/[+~%/.\w-_]*)?\??(?:[-+=&;%@.\w_]*)#?(?:[\w]*))?)/;
-    return regex.test(url);
-  };
+  const [text, setText] = useState(bookmark.url);
 
   // Handles validation after pasting into input
   const handlePaste = (event) => {
@@ -39,8 +35,16 @@ function Bookmark({ bookmark, removeBookmark }) {
     };
   }, []);
 
+  // Url Validator
+  const validateUrl = (url) => {
+    const regex =
+      /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=+$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=+$,\w]+@)[A-Za-z0-9.-]+)((?:\/[+~%/.\w-_]*)?\??(?:[-+=&;%@.\w_]*)#?(?:[\w]*))?)/;
+    return regex.test(url);
+  };
+
   const handleURLInputChange = (e) => {
     setText(e.target.value);
+    // Validate URL by input value
     const isValid = validateUrl(e.target.value);
     if (isValid) {
       setLabel('Url');
@@ -52,9 +56,12 @@ function Bookmark({ bookmark, removeBookmark }) {
       setError(true);
     }
   };
+
   // Handles submiting the form
   const handleSubmit = (e) => {
+    // Prevent from refreshing page after submiting form submit event
     e.preventDefault();
+    // Validate URL by input value
     const isValid = validateUrl(text);
     if (text !== '' && isValid) {
       setText(text);
@@ -64,11 +71,16 @@ function Bookmark({ bookmark, removeBookmark }) {
       setText(text);
     }
   };
-  // Handles removing bookmark from list
+  //Handles Focused input State
+  const handleFocused = (e) => {
+    setIsEditing(!isEditing);
+    console.log('Focused', isEditing);
+  };
+  // Handles removing bookmark from list by id
   const handleRemoveClick = useCallback(() => {
     removeBookmark(bookmark.id);
   });
-  // handles Editing Bookmark
+  // handles Editing Bookmark and switching state 'isEditing'
   const handleEditClick = useCallback(() => {
     setIsEditing(!isEditing);
   });
@@ -76,16 +88,19 @@ function Bookmark({ bookmark, removeBookmark }) {
   return (
     <ListItem>
       <div>
-        {isEditing ? (
+        {/* Switching is Editing State*/}
+        {isEditing || isFocused ? (
           <form onSubmit={handleSubmit}>
             <TextField
               error={error}
               label={label}
-              type="text"
               name="text"
+              type="text"
               value={text}
               onChange={handleURLInputChange}
               onPaste={handlePaste}
+              onBlur={handleFocused}
+              autoFocus
             />
           </form>
         ) : (
