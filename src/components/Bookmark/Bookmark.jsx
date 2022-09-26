@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-unused-vars */
 import React, { useState, useCallback, useEffect } from 'react';
-import OutsideClickHandler from './OutsideClickHandler';
+import OutsideClickHandler from '../OutsideClickHandler';
 import PropTypes from 'prop-types';
 
 import { IconButton, ListItem, TextField, Link, Tooltip } from '@mui/material';

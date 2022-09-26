@@ -2,7 +2,7 @@ import { Typography, Button } from '@mui/material';
 import React, { useEffect, useState, useCallback } from 'react';
 import './App.css';
 import Form from '../components/Form';
-import Pagination from '../components/Pagination';
+import Pagination from '../components/Pagination/Pagination';
 import BookmarksList from '../components/BookmarksList';
 
 const LOCAL_STORAGE_KEY = 'react-bookmarks';

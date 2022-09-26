@@ -1,11 +1,11 @@
 import React from 'react';
 import { List } from '@mui/material';
 import PropTypes from 'prop-types';
-import Bookmark from './Bookmark';
+import Bookmark from './Bookmark/Bookmark';
 
 function BookmarksList({ bookmarks, removeBookmark }) {
   // Reversing bookmarks order (most recent on the top)
-  const reversedBookmarks = [...bookmarks].reverse(); 
+  const reversedBookmarks = [...bookmarks].reverse();
   return (
     <List>
       {reversedBookmarks.map((bookmark) => (
