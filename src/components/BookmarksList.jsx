@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import Bookmark from './Bookmark';
 
 function BookmarksList({ bookmarks, removeBookmark }) {
-  const reversedBookmarks = [...bookmarks].reverse();
+  // Reversing bookmarks order (most recent on the top)
+  const reversedBookmarks = [...bookmarks].reverse(); 
   return (
     <List>
       {reversedBookmarks.map((bookmark) => (

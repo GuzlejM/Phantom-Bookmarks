@@ -2,4 +2,15 @@
 
 React - URL Bookmarking System
 
-Bookmark your URLs, edit them and delete by your needs.
+# Overview
+
+This is bookmarks web app which lets you, bookmark your URLs, edit them and delete by your needs. With Pagination and clear all bookmarks feature.
+
+# Tools used for development
+
+Babel
+Eslint
+Material UI
+Webpack
+
+

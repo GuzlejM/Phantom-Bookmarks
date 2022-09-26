@@ -12,6 +12,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [bookmarksPerPage, setBookmarksPerPage] = useState(20);
 
+  // LocalStorage initialisation
   useEffect(() => {
     // fires when app component mounts to the DOM
     const storageBookmarks = JSON.parse(
@@ -22,28 +23,28 @@ function App() {
     }
   }, []);
 
-  const lastIndex = currentPage * bookmarksPerPage;
-  const firstIndex = lastIndex - bookmarksPerPage;
-  const currentBookmarks = bookmarks.slice(firstIndex, lastIndex);
+  useEffect(() => {
+    // fires when bookmarks array gets updated
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(bookmarks));
+  }, [bookmarks]);
 
   const addBookmark = useCallback((bookmark) => {
     // adds new bookmark to beginning of bookmarks array
     setBookmarks([...bookmarks, bookmark]);
   });
 
-  useEffect(() => {
-    // fires when bookmarks array gets updated
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(bookmarks));
-  }, [bookmarks]);
-
-  const removeBookmark = useCallback((id) => {
-    setBookmarks(bookmarks.filter((bookmark) => bookmark.id !== id));
-  });
+  const lastIndex = currentPage * bookmarksPerPage;
+  const firstIndex = lastIndex - bookmarksPerPage;
+  const currentBookmarks = bookmarks.slice(firstIndex, lastIndex);
 
   const handleClear = () => {
     localStorage.clear();
     setBookmarks([]);
   };
+
+  const removeBookmark = useCallback((id) => {
+    setBookmarks(bookmarks.filter((bookmark) => bookmark.id !== id));
+  });
 
   return (
     <div className="App">

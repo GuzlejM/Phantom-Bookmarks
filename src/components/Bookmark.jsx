@@ -52,7 +52,7 @@ function Bookmark({ bookmark, removeBookmark }) {
       setError(true);
     }
   };
-
+  // Handles submiting the form
   const handleSubmit = (e) => {
     e.preventDefault();
     const isValid = validateUrl(text);
@@ -64,11 +64,11 @@ function Bookmark({ bookmark, removeBookmark }) {
       setText(text);
     }
   };
-
+  // Handles removing bookmark from list
   const handleRemoveClick = useCallback(() => {
     removeBookmark(bookmark.id);
   });
-
+  // handles Editing Bookmark
   const handleEditClick = useCallback(() => {
     setIsEditing(!isEditing);
   });

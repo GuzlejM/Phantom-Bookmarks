@@ -13,12 +13,14 @@ function Form({ addBookmark }) {
   const [error, setError] = useState(false);
   const [label, setLabel] = useState('Url');
 
+  //URL VALIDATOR
   const validateUrl = (url) => {
     const regex =
       /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=+$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=+$,\w]+@)[A-Za-z0-9.-]+)((?:\/[+~%/.\w-_]*)?\??(?:[-+=&;%@.\w_]*)#?(?:[\w]*))?)/;
     return regex.test(url);
   };
 
+  // Handling pasting from clipboard into input
   const handlePaste = (event) => {
     event.clipboardData.getData('text');
   };
@@ -37,8 +39,9 @@ function Form({ addBookmark }) {
 
   const handleSubmit = useCallback((e) => {
     e.preventDefault(); // prevents browser refresh
-    setBookmark({ id: '', url: '' });
+    setBookmark({ id: '', url: '' }); // sets input values into empty string
     // eslint-disable-next-line no-shadow
+    // VALIDATOR conditional
     const isValid = validateUrl(bookmark.url);
     if (bookmark.url !== '' && isValid) {
       setIsValid(isValid);
