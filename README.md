@@ -12,5 +12,3 @@ Babel
 Eslint
 Material UI
 Webpack
-
-
