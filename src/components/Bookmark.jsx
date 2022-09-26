@@ -2,7 +2,7 @@
 /* eslint-disable operator-linebreak */
 /* eslint-disable no-unused-vars */
 import React, { useState, useCallback, useEffect } from 'react';
-import { IconButton, ListItem, TextField } from '@mui/material';
+import { IconButton, ListItem, TextField, Link, Tooltip } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import PropTypes from 'prop-types';
@@ -90,16 +90,22 @@ function Bookmark({ bookmark, removeBookmark }) {
           </form>
         ) : (
           <div className="notEditingState">
-            <p>{text}</p>
-            <IconButton onClick={handleEditClick}>
-              <EditIcon />
-            </IconButton>
+            <Tooltip title="Link to:">
+              <Link href={text}>{text}</Link>
+            </Tooltip>
+            <Tooltip title="Edit">
+              <IconButton onClick={handleEditClick}>
+                <EditIcon />
+              </IconButton>
+            </Tooltip>
           </div>
         )}
       </div>
-      <IconButton onClick={handleRemoveClick}>
-        <DeleteIcon />
-      </IconButton>
+      <Tooltip title="Delete">
+        <IconButton onClick={handleRemoveClick}>
+          <DeleteIcon />
+        </IconButton>
+      </Tooltip>
     </ListItem>
   );
 }

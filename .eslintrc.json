@@ -14,10 +14,12 @@
   },
   "plugins": ["react", "prettier"],
   "rules": {
+    "linebreak-style": ["error", "windows"],
     "prettier/prettier": [
       "error",
       {
-        "singleQuote": true
+        "singleQuote": true,
+        "endOfLine": 0
       }
     ],
     "react/require-default-props": "off"
